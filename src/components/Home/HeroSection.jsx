@@ -2,11 +2,7 @@ import React from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import {
-  FaMapMarkerAlt,
-  FaRegCalendarAlt,
-  FaSearch,
-} from "react-icons/fa";
+import { FaMapMarkerAlt, FaRegCalendarAlt, FaSearch } from "react-icons/fa";
 import bgImage from "../../assets/banner.png";
 
 export default function HeroSection() {
@@ -17,13 +13,7 @@ export default function HeroSection() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      from: "Dhaka",
-      to: "Sylhet",
-      date: today.toISOString().split("T")[0],
-    },
-  });
+  } = useForm();
 
   const onSubmit = (data) => {
     console.log("Searching buses for:", data);
@@ -33,7 +23,7 @@ export default function HeroSection() {
   return (
     <section className="max-w-340 mx-auto -mt-5">
       <div
-        className="relative h-150 md:h-125 flex items-center bg-cover bg-center bg-no-repeat px-4 sm:px-6 md:px-16 overflow-hidden"
+        className="relative h-150 flex items-center bg-cover bg-center bg-no-repeat px-4 sm:px-6 md:px-16 overflow-hidden"
         style={{ backgroundImage: `url(${bgImage})` }}
       >
         {/* Overlay */}
@@ -78,7 +68,7 @@ export default function HeroSection() {
                       {...register("from", {
                         required: "Departure city is required",
                       })}
-                      className="w-full bg-transparent outline-none text-sm font-semibold text-gray-800"
+                      className="w-full bg-transparent text-sm font-bold text-gray-800 outline-none mt-0.5 placeholder-gray-400"
                     />
                   </div>
                 </div>
@@ -110,7 +100,7 @@ export default function HeroSection() {
                       {...register("to", {
                         required: "Destination city is required",
                       })}
-                      className="w-full bg-transparent outline-none text-sm font-semibold text-gray-800"
+                      className="w-full bg-transparent text-sm font-bold text-gray-800 outline-none mt-0.5 placeholder-gray-400"
                     />
                   </div>
                 </div>
@@ -142,7 +132,7 @@ export default function HeroSection() {
                       {...register("date", {
                         required: "Journey date is required",
                       })}
-                      className="w-full bg-transparent outline-none text-sm font-semibold text-gray-800 cursor-pointer"
+                      className="w-full bg-transparent text-sm font-bold text-gray-800 outline-none mt-0.5 placeholder-gray-400"
                     />
                   </div>
                 </div>
@@ -160,7 +150,7 @@ export default function HeroSection() {
                 whileTap={{ scale: 0.97 }}
                 transition={{ duration: 0.2 }}
                 type="submit"
-                className="w-full py-4 bg-emerald-600 hover:bg-emerald-700 rounded-2xl text-white font-semibold flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20 transition-colors"
+                className="w-full py-4 bg-lime-600 hover:bg-lime-700 rounded-2xl text-white font-semibold flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20 transition-colors"
               >
                 <FaSearch />
                 Search Buses
