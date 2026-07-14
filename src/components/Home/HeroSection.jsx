@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { FaMapMarkerAlt, FaRegCalendarAlt, FaSearch } from "react-icons/fa";
 import bgImage from "../../assets/banner.png";
+import { useNavigate } from "react-router";
 
 export default function HeroSection() {
   const today = new Date();
@@ -15,9 +16,12 @@ export default function HeroSection() {
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
-    console.log("Searching buses for:", data);
-    // navigate("/search", { state: data });
+    navigate("/all-ticket", {
+      state: data,
+    });
   };
 
   return (
