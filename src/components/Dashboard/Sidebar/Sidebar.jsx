@@ -19,7 +19,7 @@ import LoadingSpinner from "../../Shared/LoadingSpinner";
 const Sidebar = () => {
   const { logOut } = useAuth();
   const { role, isRoleLoading } = useRole();
-  const [isActive, setActive] = useState(true); // Default active for desktop
+  const [isActive, setActive] = useState(false); // Default active for desktop
 
   const handleToggle = () => {
     setActive(!isActive);
