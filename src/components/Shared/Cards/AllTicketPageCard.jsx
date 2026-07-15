@@ -1,61 +1,27 @@
 import React from "react";
 import { Link } from "react-router";
 import {
-  FaBus,
-  FaPlane,
-  FaShip,
-  FaTrain,
+
   FaClock,
   FaCalendarAlt,
   FaChevronRight,
 } from "react-icons/fa";
 
 const AllTicketPageCard = ({ ticket }) => {
-  const {
-    _id,
-    image,
-    title,
-    transport,
-    perks,
-    price,
-    quantity,
-    time,
-    date,
-    from,
-    to,
-  } = ticket;
-
-  const getIcon = (type) => {
-    switch (type?.toLowerCase()) {
-      case "bus":
-        return <FaBus />;
-      case "flight":
-        return <FaPlane />;
-      case "train":
-        return <FaTrain />;
-      case "launch":
-        return <FaShip />;
-      default:
-        return <FaBus />;
-    }
-  };
+  const { _id, image, operator, perks, price, quantity, time, date, from, to } =
+    ticket;
 
   return (
     <div className="bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden flex flex-col group">
       <div className="relative h-48 overflow-hidden">
         <img
           src={image}
-          alt={title}
+          alt={operator}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
         />
-        <div className="absolute top-4 left-4 flex gap-2">
-          <span className="bg-white/90 backdrop-blur-md text-gray-800 text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1">
-            {getIcon(transport)} {transport}
-          </span>
-        </div>
-        <div className="absolute bottom-4 right-4">
+        <div className="absolute top-4 left-4">
           <span
-            className={`px-3 py-1 rounded-lg text-[10px] font-bold text-white shadow-lg ${
+            className={`bg-white/90 backdrop-blur-md text-gray-800 text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm ${
               quantity > 0 ? "bg-lime-500" : "bg-red-500"
             }`}
           >
@@ -66,7 +32,7 @@ const AllTicketPageCard = ({ ticket }) => {
 
       <div className="p-6 flex flex-col grow">
         <h3 className="text-xl font-black text-gray-800 mb-2 group-hover:text-lime-600 transition-colors line-clamp-1 uppercase tracking-tight">
-          {title}
+          {operator}
         </h3>
 
         <div className="flex items-center gap-2 mb-4">
