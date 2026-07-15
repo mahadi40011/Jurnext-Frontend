@@ -9,8 +9,6 @@ import { FaTicketAlt } from "react-icons/fa";
 const VendorMenu = () => {
   return (
     <>
-      <MenuItem label="Home" address="/" icon={IoHomeOutline} />
-      <MenuItem label="All Ticket" address="/all-ticket" icon={FaTicketAlt} />
       <MenuItem
         icon={FcStatistics}
         label="Revenue Overview"
