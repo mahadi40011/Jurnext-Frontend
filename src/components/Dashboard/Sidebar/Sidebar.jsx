@@ -47,7 +47,7 @@ const Sidebar = () => {
 
       {/* 2. Sidebar Container */}
       <div
-        className={`z-20 fixed inset-y-0 left-0 flex flex-col justify-between bg-white h-screen border-r border-gray-100 transition-all duration-300 ease-in-out md:w-72 w-full transform ${
+        className={`z-20 fixed inset-y-0 left-0 flex flex-col justify-between bg-gray-100 h-screen border-r border-gray-100 transition-all duration-300 ease-in-out md:w-72 w-full transform ${
           isActive ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 shadow-2xl md:shadow-none`}
       >

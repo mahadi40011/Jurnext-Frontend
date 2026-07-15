@@ -8,8 +8,6 @@ import { FaTicketAlt } from "react-icons/fa";
 const AdminMenu = () => {
   return (
     <>
-      <MenuItem label="Home" address="/" icon={IoHome} />
-      <MenuItem label="All Ticket" address="/all-ticket" icon={FaTicketAlt} />
       <MenuItem
         icon={FaUsersGear}
         label="Manage Users"
