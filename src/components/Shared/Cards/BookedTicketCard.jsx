@@ -11,7 +11,7 @@ const BookedTicketCard = ({ ticket }) => {
   const axiosSecure = useAxiosSecure();
 
   const {_id, status, quantity, ticketID, ticketDetails } = ticket;
-  const { title, image, from, to, time, date, price } = ticketDetails;
+  const { operator, image, from, to, time, date, price } = ticketDetails;
 
   // Countdown timer
   useEffect(() => {
@@ -46,7 +46,7 @@ const BookedTicketCard = ({ ticket }) => {
       bookingId: _id,
       ticketID,
       image,
-      title,
+      operator,
       price,
       quantity,
       customer: {
@@ -69,10 +69,10 @@ const BookedTicketCard = ({ ticket }) => {
 
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden border">
-      <img src={image} alt={title} className="w-full h-40 object-cover" />
+      <img src={image} alt={operator} className="w-full h-40 object-cover" />
 
       <div className="p-4 flex flex-col gap-2">
-        <h3 className="text-lg font-semibold">{title}</h3>
+        <h3 className="text-lg font-semibold">{operator}</h3>
         <p className="text-sm text-gray-600">
           {from} → {to}
         </p>
