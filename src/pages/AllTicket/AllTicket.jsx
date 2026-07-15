@@ -9,7 +9,57 @@ import AllTicketPageCard from "../../components/Shared/Cards/AllTicketPageCard";
 import Container from "../../components/Shared/Container";
 
 const AllTicket = () => {
+  const axiosSecure = useAxiosSecure();
+  const location = useLocation();
+  const [showMobileFilter, setShowMobileFilter] = useState(false);
 
+  const defaultSearch = location.state || {
+    from: "",
+    to: "",
+    date: "",
+  };
+  const defaultFilter = {
+    operator: "",
+    busType: "",
+    maxPrice: "",
+  };
+
+  const [searchInput, setSearchInput] = useState(defaultSearch);
+  const [search, setSearch] = useState(defaultSearch);
+
+  const [filterInput, setFilterInput] = useState(defaultFilter);
+  const [filters, setFilters] = useState(defaultFilter);
+
+  console.log({ search, filters });
+  
+  const { data: tickets = [], isLoading } = useQuery({
+    queryKey: ["approved-tickets", search, filters],
+
+    queryFn: async () => {
+      const res = await axiosSecure.get("/approved-tickets", {
+        params: {
+          from: search.from,
+          to: search.to,
+          date: search.date,
+          operator: filters.operator,
+          maxPrice: filters.maxPrice,
+          busType: filters.busType,
+        },
+      });
+
+      return res.data;
+    },
+  });
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    setSearch(searchInput);
+  };
+
+  const handleApplyFilter = () => {
+    setFilters(filterInput);
+  };
 
   if (isLoading) return <LoadingSpinner />;
 
@@ -26,10 +76,10 @@ const AllTicket = () => {
             type="text"
             placeholder="From"
             className="input input-bordered w-full"
-            value={search.from}
+            value={searchInput.from}
             onChange={(e) =>
-              setSearch({
-                ...search,
+              setSearchInput({
+                ...searchInput,
                 from: e.target.value,
               })
             }
@@ -39,10 +89,10 @@ const AllTicket = () => {
             type="text"
             placeholder="To"
             className="input input-bordered w-full"
-            value={search.to}
+            value={searchInput.to}
             onChange={(e) =>
-              setSearch({
-                ...search,
+              setSearchInput({
+                ...searchInput,
                 to: e.target.value,
               })
             }
@@ -51,16 +101,16 @@ const AllTicket = () => {
           <input
             type="date"
             className="input input-bordered w-full"
-            value={search.date}
+            value={searchInput.date}
             onChange={(e) =>
-              setSearch({
-                ...search,
+              setSearchInput({
+                ...searchInput,
                 date: e.target.value,
               })
             }
           />
 
-          <button className="btn bg-lime-600 hover:bg-lime-700 text-white">
+          <button className="btn rounded-lg bg-lime-600 hover:bg-lime-700 text-white">
             <FaSearch />
             Search
           </button>
@@ -84,10 +134,10 @@ const AllTicket = () => {
 
               <select
                 className="select select-bordered w-full"
-                value={filters.busType}
+                value={filterInput.busType}
                 onChange={(e) =>
-                  setFilters({
-                    ...filters,
+                  setFilterInput({
+                    ...filterInput,
                     busType: e.target.value,
                   })
                 }
@@ -95,6 +145,7 @@ const AllTicket = () => {
                 <option value="">All</option>
                 <option value="AC">AC</option>
                 <option value="Non AC">Non AC</option>
+                <option value="Sleeper">Sleeper</option>
               </select>
             </div>
 
@@ -105,11 +156,11 @@ const AllTicket = () => {
               <input
                 type="text"
                 className="input input-bordered w-full"
-                placeholder="Hanif / Green Line"
-                value={filters.operator}
+                placeholder="Select Operator"
+                value={filterInput.operator}
                 onChange={(e) =>
-                  setFilters({
-                    ...filters,
+                  setFilterInput({
+                    ...filterInput,
                     operator: e.target.value,
                   })
                 }
@@ -119,17 +170,17 @@ const AllTicket = () => {
             {/* Price */}
             <div>
               <label className="font-medium text-sm mb-2 block">
-                Max Price
+                Price Limit
               </label>
 
               <input
                 type="number"
                 className="input input-bordered w-full"
-                placeholder="1000"
-                value={filters.maxPrice}
+                placeholder="Max Price"
+                value={filterInput.maxPrice}
                 onChange={(e) =>
-                  setFilters({
-                    ...filters,
+                  setFilterInput({
+                    ...filterInput,
                     maxPrice: e.target.value,
                   })
                 }
@@ -137,8 +188,8 @@ const AllTicket = () => {
             </div>
 
             <button
-              className="btn bg-lime-600 hover:bg-lime-700 text-white w-full"
-              onClick={refetch}
+              onClick={handleApplyFilter}
+              className="btn rounded-lg bg-lime-600 hover:bg-lime-700 text-white w-full"
             >
               Apply Filter
             </button>
@@ -190,10 +241,10 @@ const AllTicket = () => {
             {/* Bus Type */}
             <select
               className="select select-bordered w-full"
-              value={filters.busType}
+              value={filterInput.busType}
               onChange={(e) =>
-                setFilters({
-                  ...filters,
+                setFilterInput({
+                  ...filterInput,
                   busType: e.target.value,
                 })
               }
@@ -201,17 +252,18 @@ const AllTicket = () => {
               <option value="">All Bus</option>
               <option value="AC">AC</option>
               <option value="Non AC">Non AC</option>
+              <option value="Sleeper">Sleeper</option>
             </select>
 
             {/* Operator */}
             <input
               type="text"
               className="input input-bordered w-full"
-              placeholder="Operator"
-              value={filters.operator}
+              placeholder="Select Operator"
+              value={filterInput.operator}
               onChange={(e) =>
-                setFilters({
-                  ...filters,
+                setFilterInput({
+                  ...filterInput,
                   operator: e.target.value,
                 })
               }
@@ -221,11 +273,11 @@ const AllTicket = () => {
             <input
               type="number"
               className="input input-bordered w-full"
-              placeholder="Maximum Price"
-              value={filters.maxPrice}
+              placeholder="Max Price"
+              value={filterInput.maxPrice}
               onChange={(e) =>
-                setFilters({
-                  ...filters,
+                setFilterInput({
+                  ...filterInput,
                   maxPrice: e.target.value,
                 })
               }
@@ -234,7 +286,7 @@ const AllTicket = () => {
             <button
               className="btn rounded-lg text-white bg-lime-600 hover:bg-lime-700 w-full"
               onClick={() => {
-                refetch();
+                handleApplyFilter();
                 setShowMobileFilter(false);
               }}
             >
