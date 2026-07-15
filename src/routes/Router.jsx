@@ -21,6 +21,7 @@ import PaymentSuccess from "../pages/Payment/PaymentSuccess";
 import TransactionHistory from "../pages/Dashboard/Customer/TransactionHistory";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import RoleBasedAccessRoute from "./RoleBasedAccessRoute";
+import PublicRoute from "./PublicRoute";
 
 export const router = createBrowserRouter([
   {
@@ -30,22 +31,26 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <PublicRoute>
+            <Home />
+          </PublicRoute>
+        ),
       },
       {
         path: "all-ticket",
         element: (
-          <PrivateRoute>
+          <PublicRoute>
             <AllTicket />
-          </PrivateRoute>
+          </PublicRoute>
         ),
       },
       {
         path: "tickets/:id",
         element: (
-          <PrivateRoute>
+          <PublicRoute>
             <TicketDetails />
-          </PrivateRoute>
+          </PublicRoute>
         ),
       },
     ],
