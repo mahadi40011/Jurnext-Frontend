@@ -20,6 +20,7 @@ import AdvertiseTickets from "../pages/Dashboard/Admin/AdvertiseTickets";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess";
 import TransactionHistory from "../pages/Dashboard/Customer/TransactionHistory";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import RoleBasedAccessRoute from "./RoleBasedAccessRoute";
 
 export const router = createBrowserRouter([
   {
@@ -70,7 +71,9 @@ export const router = createBrowserRouter([
         path: "revenue-overview",
         element: (
           <PrivateRoute>
-            <RevenueOverview />
+            <RoleBasedAccessRoute allowedRole={"vendor"}>
+              <RevenueOverview />
+            </RoleBasedAccessRoute>
           </PrivateRoute>
         ),
       },
@@ -78,7 +81,9 @@ export const router = createBrowserRouter([
         path: "add-ticket",
         element: (
           <PrivateRoute>
-            <AddTicket />
+            <RoleBasedAccessRoute allowedRole={"vendor"}>
+              <AddTicket />
+            </RoleBasedAccessRoute>
           </PrivateRoute>
         ),
       },
@@ -86,7 +91,9 @@ export const router = createBrowserRouter([
         path: "booked-tickets",
         element: (
           <PrivateRoute>
-            <BookedTicket />
+            <RoleBasedAccessRoute allowedRole={"customer"}>
+              <BookedTicket />
+            </RoleBasedAccessRoute>
           </PrivateRoute>
         ),
       },
@@ -94,7 +101,9 @@ export const router = createBrowserRouter([
         path: "transaction-history",
         element: (
           <PrivateRoute>
-            <TransactionHistory />
+            <RoleBasedAccessRoute allowedRole={"customer"}>
+              <TransactionHistory />
+            </RoleBasedAccessRoute>
           </PrivateRoute>
         ),
       },
@@ -102,7 +111,9 @@ export const router = createBrowserRouter([
         path: "added-ticket",
         element: (
           <PrivateRoute>
-            <MyAddedTickets />
+            <RoleBasedAccessRoute allowedRole={"vendor"}>
+              <MyAddedTickets />
+            </RoleBasedAccessRoute>
           </PrivateRoute>
         ),
       },
@@ -110,7 +121,9 @@ export const router = createBrowserRouter([
         path: "requested-bookings",
         element: (
           <PrivateRoute>
-            <RequestedBookings />
+            <RoleBasedAccessRoute allowedRole={"vendor"}>
+              <RequestedBookings />
+            </RoleBasedAccessRoute>
           </PrivateRoute>
         ),
       },
@@ -118,7 +131,9 @@ export const router = createBrowserRouter([
         path: "manage-ticket",
         element: (
           <PrivateRoute>
-            <ManageTickets />
+            <RoleBasedAccessRoute allowedRole={"admin"}>
+              <ManageTickets />
+            </RoleBasedAccessRoute>
           </PrivateRoute>
         ),
       },
@@ -126,7 +141,9 @@ export const router = createBrowserRouter([
         path: "manage-users",
         element: (
           <PrivateRoute>
-            <ManageUsers />
+            <RoleBasedAccessRoute allowedRole={"admin"}>
+              <ManageUsers />
+            </RoleBasedAccessRoute>
           </PrivateRoute>
         ),
       },
@@ -134,7 +151,9 @@ export const router = createBrowserRouter([
         path: "advertise-tickets",
         element: (
           <PrivateRoute>
-            <AdvertiseTickets />
+            <RoleBasedAccessRoute allowedRole={"admin"}>
+              <AdvertiseTickets />
+            </RoleBasedAccessRoute>
           </PrivateRoute>
         ),
       },
@@ -142,7 +161,9 @@ export const router = createBrowserRouter([
         path: "payment-success",
         element: (
           <PrivateRoute>
-            <PaymentSuccess />
+            <RoleBasedAccessRoute allowedRole={"customer"}>
+              <PaymentSuccess />
+            </RoleBasedAccessRoute>
           </PrivateRoute>
         ),
       },
