@@ -29,8 +29,6 @@ const AllTicket = () => {
 
   const [filterInput, setFilterInput] = useState(defaultFilter);
   const [filters, setFilters] = useState(defaultFilter);
-
-  console.log({ search, filters });
   
   const { data: tickets = [], isLoading } = useQuery({
     queryKey: ["approved-tickets", search, filters],
@@ -38,10 +36,10 @@ const AllTicket = () => {
     queryFn: async () => {
       const res = await axiosSecure.get("/approved-tickets", {
         params: {
-          from: search.from,
-          to: search.to,
+          from: search.from.trim(),
+          to: search.to.trim(),
           date: search.date,
-          operator: filters.operator,
+          operator: filters.operator.trim(),
           maxPrice: filters.maxPrice,
           busType: filters.busType,
         },
