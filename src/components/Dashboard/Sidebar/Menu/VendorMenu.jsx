@@ -3,8 +3,6 @@ import { ImUserCheck } from "react-icons/im";
 import { TbBrandBooking } from "react-icons/tb";
 import { FcStatistics } from "react-icons/fc";
 import MenuItem from "../../../Shared/MenuItem";
-import { IoHomeOutline } from "react-icons/io5";
-import { FaTicketAlt } from "react-icons/fa";
 
 const VendorMenu = () => {
   return (
