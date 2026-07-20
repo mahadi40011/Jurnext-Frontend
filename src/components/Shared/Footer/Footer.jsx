@@ -13,7 +13,6 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-300 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4">
-        
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Column 1: Logo & Desc */}
           <div className="space-y-4">
@@ -123,8 +122,9 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-gray-800 text-center">
           <p className="text-xs text-gray-500 uppercase tracking-widest">
-            © 2025 <span className="text-lime-500 font-bold">Jurnext</span>. All
-            rights reserved.
+            © {new Date().getFullYear()}{" "}
+            <span className="text-lime-500 font-bold">Jurnext</span>. All rights
+            reserved.
           </p>
         </div>
       </div>
