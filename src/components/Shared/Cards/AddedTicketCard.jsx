@@ -4,8 +4,8 @@ const AddedTicketCard = ({ ticket }) => {
   const {
     _id,
     image,
-    title,
-    transport,
+    operator,
+    busType,
     perks,
     price,
     quantity,
@@ -16,15 +16,15 @@ const AddedTicketCard = ({ ticket }) => {
 
   return (
     <div className="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-200 hover:shadow-xl transition">
-      <img src={image} alt={title} className="w-full h-40 object-cover" />
+      <img src={image} alt={operator} className="w-full h-40 object-cover" />
 
       <div className="p-4 flex flex-col gap-2">
         <div className="space-y-1">
-          <h3 className="text-lg font-semibold">{title}</h3>
+          <h3 className="text-lg font-semibold">{operator}</h3>
           <p className="text-sm text-gray-600">
             {ticket.from} → {ticket.to}
           </p>
-          <p className="text-sm">Transport Type: {transport}</p>
+          <p className="text-sm">Bus Type: {busType}</p>
           <p className="text-sm">
             Departure: {date} {","} {time}
           </p>
@@ -55,7 +55,7 @@ const AddedTicketCard = ({ ticket }) => {
               {status}
             </span>
           </p>
-          <p className="text-sm font-medium">Price: ${price}</p>
+          <p className="text-sm font-medium">Price: {price} TK</p>
         </div>
 
         {/*  Buttons */}
