@@ -3,9 +3,10 @@ import {
   Navigation,
   Pagination,
   Autoplay,
-  EffectCoverflow,
+  FreeMode,
 } from "swiper/modules";
 import "swiper/css";
+import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -35,17 +36,18 @@ const AdvertiseSlider = () => {
       </h2>
 
       <Swiper
-        modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
-        effect={"coverflow"}
+        modules={[Navigation, Pagination, Autoplay, FreeMode]}
+        
         spaceBetween={20}
-        slidesPerView={1}
+        slidesPerView={3}
+        freeMode={true}
         navigation={{
           nextEl: ".custom-button-next",
           prevEl: ".custom-button-prev",
         }}
         loop={true}
         pagination={{ clickable: true }}
-        autoplay={{ delay: 3000 }}
+        autoplay={{ delay: 2000 }}
         breakpoints={{
           640: { slidesPerView: 2 },
           1024: { slidesPerView: 3 },
