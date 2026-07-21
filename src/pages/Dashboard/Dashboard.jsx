@@ -4,6 +4,7 @@ import useRole from "../../hooks/useRole";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 import AdminWelcomePage from "./Admin/WelcomePage";
 import VendorWelcomePage from "./Vendor/WelcomePage";
+import CustomerWelcomePage from "./Customer/WelcomePage";
 
 const Dashboard = () => {
   const { role, isRoleLoading } = useRole();
@@ -21,7 +22,7 @@ const Dashboard = () => {
   }
 
   if (role === "customer") {
-    return;
+    return <CustomerWelcomePage />;
   }
 };
 
