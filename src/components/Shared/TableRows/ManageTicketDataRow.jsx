@@ -6,8 +6,8 @@ const ManageTicketDataRow = ({ ticket, refetch }) => {
   const axiosSecure = useAxiosSecure();
   const {
     _id,
-    title,
-    transport,
+    operator,
+    busType,
     from,
     to,
     price,
@@ -36,10 +36,10 @@ const ManageTicketDataRow = ({ ticket, refetch }) => {
   return (
     <tr className="border-b border-gray-200 hover:bg-emerald-50 transition-colors">
       <td className="py-4 px-6 text-left border-r border-gray-200 font-medium whitespace-nowrap">
-        {title}
+        {operator}
       </td>
       <td className="py-4 px-6 text-center border-r border-gray-200">
-        {transport}
+        {busType}
       </td>
       <td className="py-4 px-6 text-left border-r border-gray-200 whitespace-nowrap font-semibold text-blue-600">
         {from} &rarr; {to}
@@ -75,7 +75,7 @@ const ManageTicketDataRow = ({ ticket, refetch }) => {
           <button
             onClick={() => handleStatusUpdate("approved")}
             disabled={status === "approved"}
-            className="px-4 py-1.5 rounded-lg bg-lime-200 text-lime-800 font-bold text-xs uppercase tracking-wider hover:bg-emerald-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="px-4 py-1.5 rounded-lg bg-lime-200 text-lime-600 font-bold text-xs uppercase tracking-wider hover:bg-emerald-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             Approve
           </button>

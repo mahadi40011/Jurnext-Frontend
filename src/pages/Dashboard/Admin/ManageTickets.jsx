@@ -29,14 +29,30 @@ const ManageTickets = () => {
         <table className="table-auto w-full bg-white">
           <thead>
             <tr className="bg-lime-500/80 text-white uppercase text-xs leading-normal">
-              <th className="py-4 px-6 border-r border-gray-300 text-left">Title</th>
-              <th className="py-4 px-6 border-r border-gray-300 text-left">Transport</th>
-              <th className="py-4 px-6 border-r border-gray-300 text-center">Route</th>
-              <th className="py-4 px-6 border-r border-gray-300 text-center">Price</th>
-              <th className="py-4 px-6 border-r border-gray-300 text-center">Quantity</th>
-              <th className="py-4 px-6 border-r border-gray-300 text-center">Departure</th>
-              <th className="py-4 px-6 border-r border-gray-300 text-left">Vendor</th>
-              <th className="py-4 px-6 border-r border-gray-300 text-center">Status</th>
+              <th className="py-4 px-6 border-r border-gray-300 text-left whitespace-nowrap">
+                Operator Name
+              </th>
+              <th className="py-4 px-6 border-r border-gray-300 text-left whitespace-nowrap">
+                Bus Type
+              </th>
+              <th className="py-4 px-6 border-r border-gray-300 text-center">
+                Route
+              </th>
+              <th className="py-4 px-6 border-r border-gray-300 text-center">
+                Price
+              </th>
+              <th className="py-4 px-6 border-r border-gray-300 text-center">
+                Quantity
+              </th>
+              <th className="py-4 px-6 border-r border-gray-300 text-center">
+                Departure
+              </th>
+              <th className="py-4 px-6 border-r border-gray-300 text-left whitespace-nowrap">
+                Vendor Email
+              </th>
+              <th className="py-4 px-6 border-r border-gray-300 text-center">
+                Status
+              </th>
               <th className="py-4 px-6 text-center">Actions</th>
             </tr>
           </thead>
