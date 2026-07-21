@@ -23,8 +23,8 @@ const AdvertiseTickets = () => {
         <table className="table-auto w-full bg-white">
           <thead>
             <tr className="bg-lime-500 text-white uppercase text-xs leading-normal">
-              <th className="py-4 px-6 border-r border-gray-400 text-left">Title</th>
-              <th className="py-4 px-6 border-r border-gray-400 text-center">Transport</th>
+              <th className="py-4 px-6 border-r border-gray-400 text-left">Operator Name</th>
+              <th className="py-4 px-6 border-r border-gray-400 text-center">Bus Type</th>
               <th className="py-4 px-6 border-r border-gray-400 text-center">Route</th>
               <th className="py-4 px-6 border-r border-gray-400 text-center">Price</th>
               <th className="py-4 px-6 border-r border-gray-400 text-center">Departure</th>

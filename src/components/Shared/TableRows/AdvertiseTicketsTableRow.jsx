@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 const AdvertiseTicketsTableRow = ({ ticket, refetch }) => {
   const [advertise, setAdvertise] = useState(ticket?.advertise);
   const axiosSecure = useAxiosSecure();
-  const { _id, title, transport, from, to, price, date, time } = ticket || {};
+  const { _id, operator, busType, from, to, price, date, time } = ticket || {};
   
   const handleAdvertise = async () => {
     try {
@@ -29,16 +29,16 @@ const AdvertiseTicketsTableRow = ({ ticket, refetch }) => {
   return (
     <tr className="border-b border-gray-200 hover:bg-emerald-50 transition-colors">
       <td className="py-4 px-6 text-left border-r border-gray-200 font-medium whitespace-nowrap">
-        {title}
+        {operator}
       </td>
       <td className="py-4 px-6 text-center border-r border-gray-200">
-        {transport}
+        {busType}
       </td>
       <td className="py-4 px-6 text-center border-r border-gray-200 whitespace-nowrap font-semibold text-blue-600">
         {from} &rarr; {to}
       </td>
       <td className="py-4 px-6 text-center border-r border-gray-200 font-bold">
-        ${price}
+        {price} TK
       </td>
       <td className="py-4 px-6 text-center border-r border-gray-200 whitespace-nowrap">
         {date}, {time}
