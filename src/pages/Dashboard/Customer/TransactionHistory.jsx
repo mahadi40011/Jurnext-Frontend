@@ -26,7 +26,7 @@ const TransactionHistory = () => {
         <table className="table-auto w-full bg-white">
           <thead>
             <tr className="bg-emerald-500 text-white uppercase text-xs leading-normal">
-              <th className="py-4 px-6 text-left">Ticket title</th>
+              <th className="py-4 px-6 text-left">Operator Name</th>
               <th className="py-4 px-6 text-center">Transaction ID</th>
               <th className="py-4 px-6 text-center">amount</th>
               <th className="py-4 px-6 text-center">date</th>
