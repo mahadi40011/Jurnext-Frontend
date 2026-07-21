@@ -1,10 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  Navigation,
-  Pagination,
-  Autoplay,
-  FreeMode,
-} from "swiper/modules";
+import { Navigation, Pagination, Autoplay, FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
@@ -37,7 +32,6 @@ const AdvertiseSlider = () => {
 
       <Swiper
         modules={[Navigation, Pagination, Autoplay, FreeMode]}
-        
         spaceBetween={20}
         slidesPerView={3}
         freeMode={true}
@@ -56,23 +50,18 @@ const AdvertiseSlider = () => {
       >
         {advertiseTickets.map((ticket) => (
           <SwiperSlide key={ticket?._id}>
-            <div className="bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 h-full flex flex-col group">
+            <div className="bg-white rounded-3xl shadow-sm transition-all duration-500 overflow-hidden border border-gray-100 h-full flex flex-col group">
               <div className="relative overflow-hidden h-56">
                 <img
                   src={ticket.image}
-                  alt={ticket.title}
+                  alt={ticket.operator}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
 
                 <div className="absolute top-4 left-4 flex flex-col gap-2">
                   <span className="bg-white/90 backdrop-blur-sm text-gray-800 text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1">
                     <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                    {ticket.transport || "Premium"}
-                  </span>
-                </div>
-                <div className="absolute bottom-4 right-4">
-                  <span className="bg-lime-600 text-white text-xs font-bold px-3 py-1 rounded-lg shadow-lg">
-                    {ticket.quantity} Tickets Left
+                    {ticket.busType || "Premium"}
                   </span>
                 </div>
               </div>
@@ -80,7 +69,7 @@ const AdvertiseSlider = () => {
               <div className="p-6 flex flex-col grow">
                 <div className=" mb-4">
                   <h3 className="text-xl font-extrabold text-gray-800 leading-tight group-hover:text-lime-600 transition-colors">
-                    {ticket.title}
+                    {ticket.operator}
                   </h3>
                 </div>
 
@@ -96,29 +85,29 @@ const AdvertiseSlider = () => {
                     ))}
                   </div>
 
-                  <div className="flex items-center justify-between">
-                    <div className="text-center">
-                      <p className="font-bold text-gray-700">{ticket.from}</p>
-                    </div>
-
-                    <div className="flex flex-col items-center flex-1 px-2">
-                      <div className="h-px w-full bg-gray-300 relative">
-                        <span className="absolute -top-2 left-1/2 -translate-x-1/2 text-gray-400">
-                          ✈️
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="text-center">
-                      <p className="font-bold text-gray-700">{ticket.to}</p>
-                    </div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-xs font-bold text-lime-600 bg-lime-50 px-2 py-1 rounded">
+                      {ticket.from}
+                    </span>
+                    <div className="h-px grow bg-dashed bg-gray-300 border-t border-dashed"></div>
+                    <span className="pb-1">to</span>
+                    <div className="h-px grow bg-dashed bg-gray-300 border-t border-dashed"></div>
+                    <span className="text-xs font-bold text-lime-600 bg-lime-50 px-2 py-1 rounded">
+                      {ticket.to}
+                    </span>
                   </div>
                 </div>
 
                 <div className="flex justify-between items-center pt-2 border-t border-dashed border-gray-200">
-                  <div>
+                  <div className="flex items-baseline gap-2">
+                    {/* Discounted / Original Price (Main) */}
                     <span className="text-3xl font-black text-gray-800 leading-tight group-hover:text-lime-600 transition-colors">
                       {ticket.price} TK
+                    </span>
+
+                    {/* Previous Price (100 TK Higher with Line-Through) */}
+                    <span className="text-lg font-semibold text-gray-400 line-through ">
+                      {Number(ticket.price) + 100} TK
                     </span>
                   </div>
                   <Link
