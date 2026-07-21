@@ -72,7 +72,7 @@ const AllTicketPageCard = ({ ticket }) => {
 
         <div className="mt-auto border-t pt-4 border-gray-200 flex items-center justify-between ">
           <span className="text-2xl font-black text-gray-800 mb-2 group-hover:text-lime-600 transition-colors line-clamp-1 uppercase tracking-tight">
-            ${price}
+            {price} TK
           </span>
 
           <Link
