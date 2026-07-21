@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logo from "../../../assets/logo.png";
 import Container from "../Container";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useLocation } from "react-router";
 import { HiMenu, HiX } from "react-icons/hi";
 import useAuth from "../../../hooks/useAuth";
 import MenuItem from "../MenuItem";
@@ -11,10 +11,25 @@ import { GrLogout } from "react-icons/gr";
 const Navbar = () => {
   const { user, loading, logOut } = useAuth();
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
+  // Mobile Drawer Close Helper
+  const closeDrawer = () => {
+    const drawerCheckbox = document.getElementById("my-drawer");
+    if (drawerCheckbox) {
+      drawerCheckbox.checked = false;
+    }
+  };
+
+  // Route change hole automatically drawer close hobe
+  useEffect(() => {
+    closeDrawer();
+  }, [location.pathname]);
+
+  // Navbar Scroll effect listener
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 5);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -118,13 +133,13 @@ const Navbar = () => {
             ) : (
               <Link
                 to="/login"
-                className="hidden md:flex items-center bg-lime-600 hover:bg-lime-800 text-white px-8 py-2.5 rounded-full font-bold text-xs  uppercase tracking-widest transition-all shadow-lg hover:shadow-lime-200 active:scale-95"
+                className="hidden md:flex items-center bg-lime-600 hover:bg-lime-700 text-white px-8 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest transition-all shadow-lg hover:shadow-lime-200 active:scale-95"
               >
                 Login
               </Link>
             )}
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button & Drawer */}
             <div className="lg:hidden">
               <div className="drawer drawer-end">
                 <input
@@ -140,7 +155,7 @@ const Navbar = () => {
                     <HiMenu size={30} />
                   </label>
                 </div>
-                <div className="drawer-side">
+                <div className="drawer-side z-50">
                   <label htmlFor="my-drawer" className="drawer-overlay"></label>
                   <div className="menu p-6 w-80 min-h-full bg-white text-base-content">
                     <div className="flex justify-between items-center mb-10">
@@ -157,7 +172,12 @@ const Navbar = () => {
                         <NavLink
                           key={idx}
                           to={item.path}
-                          className="text-lg font-bold p-2 border-b border-gray-50"
+                          onClick={closeDrawer}
+                          className={({ isActive }) =>
+                            `text-lg font-bold p-2 border-b border-gray-50 transition-colors ${
+                              isActive ? "text-lime-600" : "text-gray-700"
+                            }`
+                          }
                         >
                           {item.name}
                         </NavLink>
@@ -165,6 +185,7 @@ const Navbar = () => {
                       {!user && (
                         <Link
                           to="/login"
+                          onClick={closeDrawer}
                           className="bg-lime-600 hover:bg-lime-800 text-white p-3 rounded-xl text-center font-bold mt-4 transition-all shadow-lg hover:shadow-lime-200 active:scale-95"
                         >
                           Login
