@@ -3,6 +3,7 @@ import { Navigate } from "react-router";
 import useRole from "../../hooks/useRole";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 import AdminWelcomePage from "./Admin/WelcomePage";
+import VendorWelcomePage from "./Vendor/WelcomePage";
 
 const Dashboard = () => {
   const { role, isRoleLoading } = useRole();
@@ -12,15 +13,15 @@ const Dashboard = () => {
   }
 
   if (role === "admin") {
-    return <AdminWelcomePage/>
+    return <AdminWelcomePage />;
   }
 
   if (role === "vendor") {
-    return 
+    return <VendorWelcomePage />;
   }
 
   if (role === "customer") {
-    return
+    return;
   }
 };
 
