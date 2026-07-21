@@ -19,10 +19,14 @@ import LoadingSpinner from "../../Shared/LoadingSpinner";
 const Sidebar = () => {
   const { logOut } = useAuth();
   const { role, isRoleLoading } = useRole();
-  const [isActive, setActive] = useState(false); // Default active for desktop
+  const [isActive, setActive] = useState(false); // Mobile sidebar state
 
   const handleToggle = () => {
     setActive(!isActive);
+  };
+
+  const closeSidebar = () => {
+    setActive(false);
   };
 
   if (isRoleLoading) return <LoadingSpinner />;
@@ -31,7 +35,7 @@ const Sidebar = () => {
     <>
       {/* 1. Mobile Header (Only visible on small screens) */}
       <div className="bg-gray-900 text-gray-100 flex justify-between items-center md:hidden px-4 py-3 shadow-lg">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2" onClick={closeSidebar}>
           <img className="w-8 h-8" src={logo} alt="Logo" />
           <span className="font-black text-xl tracking-tighter">
             JUR<span className="text-lime-500">NEXT</span>
@@ -41,21 +45,24 @@ const Sidebar = () => {
           onClick={handleToggle}
           className="p-2 rounded-lg bg-gray-800 text-lime-500 hover:bg-gray-700 transition-colors"
         >
-          {isActive || <AiOutlineBars size={24} />}
+          {isActive ? <HiX size={24} /> : <AiOutlineBars size={24} />}
         </button>
       </div>
 
       {/* 2. Sidebar Container */}
       <div
-        className={`z-20 fixed inset-y-0 left-0 flex flex-col justify-between bg-gray-100 h-screen border-r border-gray-100 transition-all duration-300 ease-in-out md:w-72 w-full transform ${
+        className={`z-20 fixed inset-y-0 left-0 flex flex-col justify-between bg-gray-100 h-screen border-r border-gray-100 transition-all duration-300 ease-in-out w-72 transform ${
           isActive ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 shadow-2xl md:shadow-none`}
       >
         <div className="flex flex-col h-full overflow-y-auto custom-scrollbar">
           {/* Logo Section */}
-          {/* Mobile screen logo on sidebar, when is open */}
           <div className="bg-gray-900 text-gray-100 flex justify-between items-center md:hidden px-4 py-3 shadow-lg">
-            <Link to="/" className="flex items-center gap-2">
+            <Link
+              to="/"
+              className="flex items-center gap-2"
+              onClick={closeSidebar}
+            >
               <img className="w-8 h-8" src={logo} alt="Logo" />
               <span className="font-black text-xl tracking-tighter">
                 JUR<span className="text-lime-500">NEXT</span>
@@ -65,11 +72,11 @@ const Sidebar = () => {
               onClick={handleToggle}
               className="p-2 rounded-lg bg-gray-800 text-lime-500 hover:bg-gray-700 transition-colors"
             >
-              {isActive && <HiX size={24} />}
+              <HiX size={24} />
             </button>
           </div>
 
-          {/* md screen logo on sidebar */}
+          {/* Desktop screen logo on sidebar */}
           <div className="px-6 py-8 hidden md:block">
             <Link to="/" className="flex items-center gap-3 group">
               <img
@@ -84,11 +91,11 @@ const Sidebar = () => {
           </div>
 
           {/* Navigation Links */}
-          <div className="flex-1 px-4">
+          <div className="flex-1 px-4" onClick={closeSidebar}>
             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4 mb-4 mt-5 md:mt-0">
               Main Menu
             </p>
-            
+
             {/* Role-Based Menus */}
             <nav className="space-y-1">
               {role === "admin" && <AdminMenu />}
@@ -102,7 +109,7 @@ const Sidebar = () => {
             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4 mb-4">
               Account
             </p>
-            <div className="space-y-1">
+            <div className="space-y-1" onClick={closeSidebar}>
               <MenuItem
                 icon={FcSettings}
                 label="My Profile"
@@ -123,8 +130,8 @@ const Sidebar = () => {
       {/* 3. Overlay for Mobile */}
       {isActive && (
         <div
-          onClick={handleToggle}
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-10 md:hidden transition-opacity"
+          onClick={closeSidebar}
+          className="fixed inset-0 bg-black/30 backdrop-blur-xs z-10 md:hidden transition-opacity"
         />
       )}
     </>
