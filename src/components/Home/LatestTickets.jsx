@@ -45,11 +45,11 @@ const LatestTickets = () => {
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={ticket.image}
-                  alt={ticket.title}
+                  alt={ticket.operator}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-gray-700 uppercase tracking-widest">
-                  {ticket.transport}
+                  {ticket.busType}
                 </span>
                 <span className="absolute bottom-4 right-4 bg-lime-600 text-white text-[10px] font-bold px-2 py-1 rounded-md">
                   {ticket.quantity} Left
@@ -60,7 +60,7 @@ const LatestTickets = () => {
                 {/* Title & Price */}
                 <div className="mb-4">
                   <h3 className="text-lg font-bold text-gray-800 line-clamp-1 mb-1 group-hover:text-lime-600 transition-colors">
-                    {ticket.title}
+                    {ticket.operator}
                   </h3>
                   <div className="flex items-baseline gap-1">
                     <span className="text-xl font-black text-gray-800 leading-tight group-hover:text-lime-600 transition-colors">
@@ -72,23 +72,11 @@ const LatestTickets = () => {
                   </div>
                 </div>
 
-                {/* Perks Chips */}
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {ticket.perks?.slice(0, 3).map((perk, idx) => (
-                    <span
-                      key={idx}
-                      className="text-[10px] font-semibold bg-gray-100 text-gray-500 px-2 py-0.5 rounded"
-                    >
-                      {perk}
-                    </span>
-                  ))}
-                </div>
-
                 {/* Action Button */}
                 <div className="mt-auto">
                   <Link
                     to={`/tickets/${ticket._id}`}
-                    className="w-full inline-flex items-center justify-center bg-lime-600 hover:bg-lime-800 text-white py-3 rounded-xl font-bold text-xs uppercase tracking-widest transition-all active:scale-95 shadow-lg hover:shadow-lime-200"
+                    className="w-full inline-flex items-center justify-center bg-lime-600 hover:bg-lime-700 text-white py-3 rounded-xl font-bold text-xs uppercase tracking-widest transition-all active:scale-95 shadow-lg hover:shadow-lime-200"
                   >
                     See Details
                   </Link>
