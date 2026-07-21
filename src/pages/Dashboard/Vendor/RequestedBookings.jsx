@@ -34,7 +34,7 @@ const RequestedBookings = () => {
                   Email
                 </th>
                 <th className="px-5 py-3 bg-green-200 border-b border-gray-300 text-gray-800 text-left text-sm uppercase font-semibold">
-                  Ticket Title
+                  Operator Name
                 </th>
                 <th className="px-5 py-3 bg-green-200 border-b border-gray-300 text-gray-800 text-center text-sm uppercase font-semibold">
                   Quantity

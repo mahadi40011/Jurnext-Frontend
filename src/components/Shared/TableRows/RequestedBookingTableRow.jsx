@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 const RequestedBookingTableRow = ({refetch, bookingReqData }) => {
   const axiosSecure = useAxiosSecure();
-  const {_id, customer, ticketPrice, ticketTitle, quantity, status } =
+  const {_id, customer, ticketPrice, operatorName, quantity, status } =
     bookingReqData;
   
   const handleStatusUpdate = async (newStatus) => {
@@ -28,7 +28,7 @@ const RequestedBookingTableRow = ({refetch, bookingReqData }) => {
         <p className="text-gray-900 ">{customer?.email}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">{ticketTitle}</p>
+        <p className="text-gray-900 ">{operatorName}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-center text-sm">
         <p className="text-gray-900 ">{quantity}</p>
